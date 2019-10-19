@@ -6,7 +6,7 @@
 ## 快速上手
 1. 在 goods.txt 中输入需要查询的商品链接。
 2. 使用 Windows 任务计划或 Linux 定时任务，定时执行程序 **timing.py**。
-3. 获取到数据后，运行 **draw.py** 即会生成含有商品价格时间变化折线图的**price.html**。
+3. 获取到数据后，运行 **draw.py** 即会生成含有商品价格时间变化折线图的 **price.html**。
 ## 定时任务详解
 ### Windows 任务计划
 * 推荐阅读<https://mp.weixin.qq.com/s/JKFvnmtlEqaE8GxbX6Fpyw>
