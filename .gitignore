@@ -1,0 +1,6 @@
+# 忽略python编译产生的 .pyc .pyo .pyd 文件
+*.py[cod] 
+dist
+__pycache__/
+.DS_Store
+*.vscode
