@@ -42,7 +42,7 @@
 			</button>
 		</span>
 		<span class="input-group-btn">
-			<button class="btn btn-default" onclick="checkForm('pd')"  id='bugo' style="background-color:palevioletred;">
+			<button class="btn btn-default" onclick="checkForm('pdd')"  id='bugo' style="background-color:palevioletred;">
 				<font size="2" color="white">拼多多</font>
 			</button>
 		</span>
@@ -53,7 +53,7 @@
     <iframe src="https://search.suning.com/%E6%89%8B%E6%9C%BA/" id='ifa' width="1450" height="700" ></iframe>
     <!-- <iframe src="https://list.tmall.com/search_product.htm?q=%E6%89%8B%E6%9C%BA" id='tm' width="1450" height="420" ></iframe>
     <iframe src="https://search.jd.com/Search?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8" id='jd' width="1450" height="420" ></iframe>
-    <iframe src="http://yangkeduo.com/search_result.html?search_key=%E6%89%8B%E6%9C%BA" id='pd' width="1450" height="420" ></iframe> -->
+    <iframe src="http://yangkeduo.com/search_result.html?search_key=%E6%89%8B%E6%9C%BA" id='pdd' width="1450" height="420" ></iframe> -->
   </div>
   <div>
     <script> 
@@ -62,7 +62,7 @@
 			var ifa = document.getElementById("ifa"); // 获取元素
             // var tm = document.getElementById("tm");
             // var jd = document.getElementById("jd");
-			// var pd = document.getElementById("pd");
+			// var pdd = document.getElementById("pdd");
 			var keyword = document.getElementById("inpu");
 			if (keyword.value === null || keyword.value === ""){
                     alert('请输入搜索词');
@@ -75,16 +75,16 @@
 				// tm.setAttribute("src", tmsrc)
 				jdsrc = "https://search.jd.com/Search?keyword=" + urlkw + '&enc=utf-8'
 				// jd.setAttribute("src", jdsrc)
-				pdsrc = "http://yangkeduo.com/search_result.html?search_key=" + urlkw
-				// pd.setAttribute("src", pdsrc)
-				console.log(e,'修改过后',snsrc,tmsrc,jdsrc,pdsrc)
+				pddsrc = "http://yangkeduo.com/search_result.html?search_key=" + urlkw
+				// pdd.setAttribute("src", pddsrc)
+				console.log(e,'修改过后',snsrc,tmsrc,jdsrc,pddsrc)
 			}
 			if (e=='sn'){
 				ifa.setAttribute("src", snsrc);
 			} else if (e=='tm') {
 				ifa.setAttribute("src", tmsrc);
-			} else if (e=='pd') {
-				ifa.setAttribute("src", pdsrc)
+			} else if (e=='pdd') {
+				ifa.setAttribute("src", pddsrc)
 			} else {
 				ifa.setAttribute("src", jdsrc)
 			}
