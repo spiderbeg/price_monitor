@@ -1,0 +1,96 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SEARCH</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div style=" width:1450px; margin:auto;">
+	<h2 style="font-family:FangSong;font-weight:bold;color:rgb(228, 9, 9)">搜索一下？</h2>
+    <div style="padding: 5px 5px 5px;">
+		<div class="input-group">
+			<input maxlength="120" name="url" type="text" class="form-control" placeholder="欢迎!  请先输入搜索词" onkeyup="if(event.keyCode == 13){checkForm('sn')}" style='color:black;' id='inpu'> 
+			<span class="input-group-btn">
+				<button class="btn btn-default" onclick="checkForm('sn')"  id='bugo'>
+					搜索！
+				</button>
+			</span>
+		</div>
+	</div>
+	<div>
+		<span class="input-group-btn">
+			<button class="btn btn-default" onclick="checkForm('sn')"  id='bugo' style="background-color:rgb(255, 196, 0);">
+				<font size="2" color="white">苏宁易购</font>
+			</button>
+		</span>
+		<span class="input-group-btn">
+			<button class="btn btn-default" onclick="checkForm('tm')"  id='bugo' style="background-color:rgb(19, 61, 177);">
+				<font size="2" color="white">天猫商城</font>
+			</button>
+		</span>
+		<span class="input-group-btn">
+			<button class="btn btn-default" onclick="checkForm('jd')"  id='bugo' style="background-color:red;">
+				<font size="2" color="white">京东商城</font>
+			</button>
+		</span>
+		<span class="input-group-btn">
+			<button class="btn btn-default" onclick="checkForm('pd')"  id='bugo' style="background-color:palevioletred;">
+				<font size="2" color="white">拼多多</font>
+			</button>
+		</span>
+
+	</div>
+
+  
+    <iframe src="https://search.suning.com/%E6%89%8B%E6%9C%BA/" id='ifa' width="1450" height="700" ></iframe>
+    <!-- <iframe src="https://list.tmall.com/search_product.htm?q=%E6%89%8B%E6%9C%BA" id='tm' width="1450" height="420" ></iframe>
+    <iframe src="https://search.jd.com/Search?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8" id='jd' width="1450" height="420" ></iframe>
+    <iframe src="http://yangkeduo.com/search_result.html?search_key=%E6%89%8B%E6%9C%BA" id='pd' width="1450" height="420" ></iframe> -->
+  </div>
+  <div>
+    <script> 
+        function checkForm(e){
+			console.log('函数开始运行')
+			var ifa = document.getElementById("ifa"); // 获取元素
+            // var tm = document.getElementById("tm");
+            // var jd = document.getElementById("jd");
+			// var pd = document.getElementById("pd");
+			var keyword = document.getElementById("inpu");
+			if (keyword.value === null || keyword.value === ""){
+                    alert('请输入搜索词');
+					return false;
+			} else {
+				var urlkw = encodeURI(keyword.value) // 修改为元素值
+				snsrc = 'https://search.suning.com/' + urlkw + '/'
+				// sn.setAttribute("src", snsrc)
+				tmsrc = "https://list.tmall.com/search_product.htm?q=" + urlkw
+				// tm.setAttribute("src", tmsrc)
+				jdsrc = "https://search.jd.com/Search?keyword=" + urlkw + '&enc=utf-8'
+				// jd.setAttribute("src", jdsrc)
+				pdsrc = "http://yangkeduo.com/search_result.html?search_key=" + urlkw
+				// pd.setAttribute("src", pdsrc)
+				console.log(e,'修改过后',snsrc,tmsrc,jdsrc,pdsrc)
+			}
+			if (e=='sn'){
+				ifa.setAttribute("src", snsrc);
+			} else if (e=='tm') {
+				ifa.setAttribute("src", tmsrc);
+			} else if (e=='pd') {
+				ifa.setAttribute("src", pdsrc)
+			} else {
+				ifa.setAttribute("src", jdsrc)
+			}
+        }
+    </script>
+  </div>
+
+</body>
+</html>
