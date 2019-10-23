@@ -11,7 +11,7 @@ class JD:
     商品详细页：https://item.m.jd.com/product/100009083152.html
     预售商品价格接口：https://yuding.jd.com/presaleInfo/getPresaleInfo.action?callback=yushouNoWayJDCBA&sku=100009083152 
     商品配置接口：https://yx.3.cn/service/info.action?ids=100009083154
-    实现功能：输入商品链接或者输入，商品id，定时查询输出当前商品价格，并保存商品价格，绘制为价格变化图
+    实现功能：输入商品链接，输出当前商品价格。
     用户：输入 链接 , 输出价格,若为预售商品则输出预售商品价格
     """
     def __init__(self,goodsUrl):
