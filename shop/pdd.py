@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 class PDD:
     """
-    输入平多多商品链接
+    功能：输入平多多商品链接，返回价格
     输入商品id，获取商品价格信息
     商品详细信息页：http://yangkeduo.com/goods.html?goods_id=6199937358
     """
@@ -25,6 +25,7 @@ class PDD:
         return goodsId
 
     def _info(self):
+        """返回：商品信息的 BeautifulSoup 对象"""
         try:
             r = requests.get(self.url,headers=self.headers)
         except requests.exceptions.RequestException as e:
@@ -32,10 +33,10 @@ class PDD:
             return None
         soup = BeautifulSoup(r.text,features="lxml")
         # print(soup)
-
         return soup
 
     def title(self):
+        """返回：商品标题"""
         try:
             title = self.soup.find(class_="_1pQOmeOt").text
         except AttributeError as e:
@@ -44,6 +45,9 @@ class PDD:
         return title
     
     def price(self) -> float or None:
+        """返回：商品价格
+        未使用
+        """
         try:
             price = self.soup.find(class_="_3r8Ds_Kf").text.replace('￥','').replace('单独购买','')
         except AttributeError as e:
@@ -52,6 +56,7 @@ class PDD:
         return float(price)
 
     def tPrice(self) -> float or None:
+        """返回：商品团购价"""
         try:
             tprice = self.soup.find(class_="_3dlX1BNw").text.replace('￥','').replace('发起拼单','')
         except AttributeError as e:
@@ -61,7 +66,6 @@ class PDD:
 
     def main(self):
         title = self.title()
-        # price = self.price()
         tprice = self.tPrice()
         return title,tprice
 

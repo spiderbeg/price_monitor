@@ -25,7 +25,9 @@ def get_date():
     return dt
 
 def get_url():
-    """读取商品链接"""
+    """读取商品链接
+    返回：图像名，商品名，商品链接 元组
+    """
     urls = []
     with open(os.path.join(basePath, 'goods.csv'),'r',encoding='utf8') as f:
         f_csv = csv.reader(f)
@@ -36,7 +38,8 @@ def get_url():
     return urls
 
 def go(url):
-    '''输入链接输出价格
+    '''输入：链接
+    输出：(时间，标题，商品价格), 文件路径 元组
     统一价格输出，以最低价格为标准，如有团购和单独购买以单独购买为准
     '''
     result = re.findall('://(.+?).com', url[2])
@@ -59,12 +62,17 @@ def go(url):
         print('标题 %s, 价格（多个价格以团购为准） %s. '%(title,price))
     else:
         raise TypeError('请检查输入是否为目标网站的商品详细页面链接')
-    today = get_date() # 日期
-    row = (today, title, price)
+    # 文件名
     replace_string = ['.',' ',r'/',r'\\']
     for rs in replace_string:
         url[1] = url[1].replace(rs,'_')
     path = os.path.join(os.path.join(basePath, 'data'), url[1]+'.csv')
+
+    today = get_date() # 日期
+    return (today, title, price),path
+
+def addData(row, path):
+    """数据写入文件"""
     with open(path,'a+',encoding='utf8') as f:
         fieldnames = ['时间', '标题','价格']
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -76,7 +84,8 @@ def main():
     """运行程序"""
     urls = get_url()
     for url in urls:
-        go(url)
+        row,path = go(url) # 获取返回信息 
+        addData(row,path) # 写入文件
 
 
 if __name__ == '__main__':

@@ -23,6 +23,7 @@ class JD:
     'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Mobile Safari/537.36',
 }
     def _url(self,shopUrl):
+        """返回：商品 id """
         try:
             temp = re.findall(r'product/(\d+).html', shopUrl) # 手机端链接
             if temp:
@@ -34,6 +35,7 @@ class JD:
         return pid
 
     def price(self) -> float or None:
+        """返回：商品价格"""
         try:
             r = requests.get(self.urlPrice,headers=self.headers)
         except requests.exceptions.RequestException as e:
@@ -46,6 +48,7 @@ class JD:
 
 
     def ysPrice(self) -> float or None:
+        """返回：预售商品价格 """
         try:
             r = requests.get(self.urlysPrice,headers=self.headers)
         except requests.exceptions.RequestException as e:
@@ -62,6 +65,7 @@ class JD:
         return float(price)
 
     def config(self):
+        """返回：商品标题"""
         try:
             r = requests.get(self.urlConfig,headers=self.headers)
         except requests.exceptions.RequestException as e:
@@ -72,7 +76,6 @@ class JD:
         return name
 
     def main(self):
-        """choice: 1 预售商品，2 非预售商品"""
         title = self.config()
         price = self.ysPrice()
         if not price:

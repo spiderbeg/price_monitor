@@ -16,15 +16,15 @@ def line(title,checktime,price) -> Line:
         .set_global_opts(title_opts=opts.TitleOpts(title="商品价格"),
                 yaxis_opts=opts.AxisOpts(name="元/台"),
                 xaxis_opts=opts.AxisOpts(name=title,
-                    axislabel_opts=opts.LabelOpts(formatter="{value}", font_size=12, rotate=30,) # x,y 轴标签
-                        )
+                axislabel_opts=opts.LabelOpts(formatter="{value}", font_size=12, rotate=30,) # x,y 轴标签
+                    )
                 )
         )
     return c
 
 def files():
     """
-    输出字典，每一个键值为一张图表
+    输出字典，每一个键值代表一张图表
     """
     global basePath
     files = {}

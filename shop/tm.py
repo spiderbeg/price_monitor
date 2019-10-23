@@ -6,6 +6,7 @@ from urllib.parse import quote
 
 class TM:
     """
+    功能：在商品详细页显示商品已选的条件下。输入商品链接，获取天猫商品价格 
     商品详细页：https://detail.m.tmall.com/item.htm?id=605030977928&skuId=4241317581009
     商品价格及配置信息;https://h5api.m.taobao.com/h5/mtop.taobao.detail.getdetail/6.0/?data=%7B%22itemNumId%22%3A%22605030977928%22%7D
     # data={"itemNumId":"605030977928"}
@@ -21,6 +22,10 @@ class TM:
         self.result,self.resultn = self._info() # self.result 取名字使用，self.resultn 取价格使用
 
     def _url(self,goodsUrl):
+        """从输入链接中获取能确定商品的 id
+        输入：商品链接；
+        返回：商品 id 元组
+        """
         try:
             gid = re.findall(r'id=(\d+)', goodsUrl)[0]
             sku = re.findall(r'skuId=(\d+)', goodsUrl) # 电脑手机选中后会生成 skuid
@@ -38,7 +43,7 @@ class TM:
         return data
 
     def _info(self):
-        """获取商品信息，在生成实例时完成"""
+        """返回：商品信息 json 数据元组，在生成实例时完成"""
         try:
             r = requests.get(self.url,headers=self.headers)
         except requests.exceptions.RequestException as e:
@@ -49,6 +54,7 @@ class TM:
         return result,resultn
 
     def config(self):
+        """返回：商品信息标题"""
         try:
             result2 = self.result['apiStack'][0]['value']
             result2 = json.loads(result2)
@@ -59,7 +65,7 @@ class TM:
         return name
     
     def subPrice(self):
-        """预售商品，如 y9000x"""
+        """返回：预售商品价格，如 y9000x"""
         try:
             price = self.resultn['price']['subPrice']['priceText']
             if not price.isdigit():
@@ -70,7 +76,7 @@ class TM:
             return None
 
     def sPrice(self) -> float or None:
-        """单一商品，单一价格"""
+        """返回：单一商品，单一价格"""
         try:
             price = self.resultn['price']['price']['priceText']
             return float(price)
