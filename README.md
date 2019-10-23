@@ -5,6 +5,11 @@
 * 单独运行画图程序，可根据定时任务获取的数据，生成商品价格时间变化折线图。
 * 简单的商品查看页面 <https://htmlpreview.github.io/?https://raw.githubusercontent.com/spiderbeg/price_monitor/master/search/search.html> 。注意：点击后请等待一段时间即可，请勿频繁刷新。
 ## 快速上手
+### 项目下载
+* 确认本地放置项目的目录，运行：
+          
+          git clone https://github.com/spiderbeg/price_monitor.git
+### 大致流程
 1. 在 goods.txt 中输入需要查询的商品链接，注意 **\",\" 请输入英文字符**，参数名如下：
       * 图像名：运行画图程序后，生成的文件名，图像名相同则数据在同一图像文件中出现。
       * 商品名：监测的商品的名字，也是图像上的标题。
