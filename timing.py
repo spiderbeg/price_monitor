@@ -9,6 +9,12 @@ from shop.sn import SN
 from shop.pdd import PDD
 from apscheduler.schedulers.blocking import BlockingScheduler
 
+# import logging
+# formats = "%(asctime)s %(name)s %(levelname)s function:%(funcName)s -> :%(message)s"
+# logging.basicConfig(format=formats, datefmt='%m/%d/%Y %I:%M:%S %p') # ,handlers=[logging.FileHandler(log_path, 'a+', 'utf-8')]
+# LOGGER = logging.getLogger(__name__)
+# LOGGER.setLevel(logging.INFO)
+
 basePath = os.path.dirname(os.path.abspath(__file__)) # 当前文件夹
 
 def get_date():

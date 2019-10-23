@@ -11,8 +11,7 @@ class SN:
     """
     def __init__(self,goodsUrl):
         self.shopId,self.shopId2 = self._url(goodsUrl)
-        self.url1 = 'https://pas.suning.com/nsenitemsale_0000000%s_%s_5_999_100_025_0250199______1000173_.html?_=1571284185922&callback=wapData'%(self.shopId2,self.shopId)
-        # self.url2 = 'https://pas.suning.com/nssnattache_%s_%s_9173_18_18_R1901001_20006_9173_0_5_0_000000010597840391_0_4588.00_999_0250199_025_3_0_0030000400CH9F0H1_0010132789___0021_000060021_30193816____157179760166147885_20002___.html?callback=attacheCommonLogic'%(self.shopId2,self.shopId)
+        self.url = 'https://pas.suning.com/nsenitemsale_0000000%s_%s_5_999_100_025_0250199______1000173_.html?_=1571284185922&callback=wapData'%(self.shopId2,self.shopId)
         self.result = self._info()
 
     def _url(self, goodsUrl) -> (str,str):
@@ -24,19 +23,17 @@ class SN:
         except IndexError as e:
             raise IndexError('请检查 1 是否为苏宁易购商品链接，2 链接中需含有 product 字段。%s.'%e)
         print(result2)
+        if len(result2[1]) == 18:
+                result2[1] = result2[1][7:]
         return result2[0],result2[1]
 
     def _info(self):
         try:
-            r = requests.get(self.url1)
+            r = requests.get(self.url)
             result = r.text.strip()[8:-1]
-            # if r'"code":"1"' in r.text:
-            #     r2 = requests.get(self.url2)
-            #     result = r2.text.strip()[19:-1]
         except requests.exceptions.RequestException as e:
             print('信息请求错误，请检查 id', e)
             return None
-        # print(result)
         result = json.loads(result)
         return result
 

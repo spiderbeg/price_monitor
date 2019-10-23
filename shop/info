@@ -29,3 +29,25 @@
     输入商品id，获取商品价格信息
     商品详细信息页：http://yangkeduo.com/goods.html?goods_id=6199937358
     """
+
+
+可用性测试，1 可用， 0 失败。
+链接：
+京东超市,第三方店铺,京东自营 -> 1,1,1
+https://item.m.jd.com/product/2543188.html?pps=reclike.FO4O605:FOFO4O26CE543O13O6:FOF10516O8A3O1FO3O643O7FFF5021813FOBO26CE543BA6958D9E694332
+https://item.m.jd.com/product/45522588127.html?pps=reclike.FO4O605:FOFO00995B91DF3O13O6:FOFF0416O44OCFO3O643O7FFF5021813FO8OA995B91DF3B99958DAE9CFEDC
+https://item.m.jd.com/product/100008602934.html?extension_id=eyJhZCI6IjEyMjMiLCJjaCI6IjIiLCJza3UiOiIxMDAwMDg2MDI5MzQiLCJ0cyI6IjE1NzE4MTA3MDYiLCJ1bmlxaWQiOiJ7XCJjbGlja19pZFwiOlwiODNmZDIxZjUtOTNjYi00OWZmLWFmMDYtZjljM2JjNzMxOTEwXCIsXCJtYXRlcmlhbF9pZFwiOlwiMTAyMzU3MzA2NFwiLFwicG9zX2lkXCI6XCIxMjIzXCIsXCJzaWRcIjpcIjc3N2JiYjBjLWYwNjMtNDJhMS1hYjA3LTUwMmI5OTEwYWI1NVwifSJ9&jd_pop=83fd21f5-93cb-49ff-af06-f9c3bc731910&abt=0
+拼多多百亿补贴，第三方店铺 -> 1,1
+http://mobile.yangkeduo.com/goods.html?goods_id=51084116558&page_from=51&refer_page_name=brand_activity_festival&refer_page_id=21459_1571811065228_UWOFYU2w6g&refer_page_sn=21459
+http://yangkeduo.com/goods.html?goods_id=1891682&page_from=35&refer_page_name=index&refer_page_id=10002_1571811058877_BNIUSbZOnp&refer_page_sn=10002
+天猫商品，天猫超市，天猫苏宁，聚划算 -> 1,1,1,1
+https://detail.m.tmall.com/item.htm?id=601007322186&scm=1007.12144.135827.1720401_0_0&pvid=bc8610a8-be3e-4b11-be90-67baeb8c51b3&utparam={"x_hestia_source":"1720401","x_object_type":"item","x_mt":8,"x_src":"1720401","x_pos":4,"x_pvid":"bc8610a8-be3e-4b11-be90-67baeb8c51b3","x_object_id":601007322186}&spm=a211ue.11501597.new-recommend.5
+https://detail.m.tmall.com/item.htm?spm=a3204.12716520.items.1&id=13546787600&addressId=undefined&locType=B2C
+https://detail.m.tmall.com/item.htm?id=547501373744&spm=a2141.7631565.designer_21982232950._0_2
+https://ju.taobao.com/m/jusp/alone/detailwap/mtp.htm?item_id=523962011119&_force=wap&_target=_blank&spm=a2147.7632989.List.7&ju_id=10000487371990&item_id=523962011119&_format=true
+苏宁自营，苏宁第三方店铺，苏宁超市自营，苏宁 apple 自营 -> 1,1,1,1
+https://m.suning.com/product/0000000000/000000011210599174.html?utm_source=baidu&utm_midium=brand-wuxian&utm_content=&utm_campaign=title&safp=f73ee1cf.wapindex7.113464229882.4&safc=prd.1.rec_14-40_0_A_ab:A
+https://m.suning.com/product/0070067092/000000000188392234.html?utm_source=baidu&utm_midium=brand-wuxian&utm_content=&utm_campaign=title&safp=f73ee1cf.wapindex7.113464229882.60&safc=prd.1.rec_5-5_1018C,1014C$c3ae37eafeb814a098d120647449da6f_H_ab:A
+https://m.suning.com/product/0000000000/000000000107426461.html?src=snsxpd_none_recssxcnxhq_1-3_p_0000000000_000000000107426461_rec_21-65_3_A&safp=f73ee1cf.71jyzx.112079032536.4&safc=prd.1.rec_21-65_3_A
+https://m.suning.com/product/0000000000/10606656136.html?safp=f73ee1cf.phone2019.121927933306.2&safc=prd.0.0
+
