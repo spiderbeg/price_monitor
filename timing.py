@@ -74,6 +74,7 @@ def main():
 
 
 if __name__ == '__main__':
+    print('时间',get_date())
     main()
     # scheduler = BlockingScheduler()
     # scheduler.add_job(go,'cron', args=[url],hour='8-23', minute= '5,35' , second='15')
