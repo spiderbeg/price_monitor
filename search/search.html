@@ -25,43 +25,26 @@
 			</span>
 		</div>
 	</div>
-	<div>
-		<span class="input-group-btn" style="display:inline-block; width: 220px;">
-			<button class="btn btn-default" onclick="checkForm('sn')"  id='bugo' style="background-color:rgb(255, 196, 0);">
-				<font size="2" color="white">苏宁易购</font>
-			</button>
-		</span>
-		<span class="input-group-btn" style="display:inline-block; width: 220px;">
-			<button class="btn btn-default" onclick="checkForm('tm')"  id='bugo' style="background-color:rgb(19, 61, 177);">
-				<font size="2" color="white">天猫商城</font>
-			</button>
-		</span>
-		<span class="input-group-btn" style="display:inline-block; width: 220px;">
-			<button class="btn btn-default" onclick="checkForm('jd')"  id='bugo' style="background-color:red;">
-				<font size="2" color="white">京东商城</font>
-			</button>
-		</span>
-		<span class="input-group-btn" style="display:inline-block; width: 220px;">
-			<button class="btn btn-default" onclick="checkForm('pdd')"  id='bugo' style="background-color:palevioletred;">
-				<font size="2" color="white">拼多多</font>
-			</button>
-		</span>
-	</div>
-
-  
+	<nav class="navbar navbar-default"  style='margin-bottom: 6px;'>
+		<div class="container-fluid">
+		  <div class="navbar-header">
+			<a class="navbar-brand" href="#">WebSiteName</a>
+		  </div>
+		  <ul class="nav navbar-nav">
+			<li class="active" onclick="checkForm('sn')" id='bugo1'><a href="#">苏宁</a></li>
+			<li class="a" onclick="checkForm('tm')"  id='bugo2'><a href="#">天猫</a></li>
+			<li class="a" onclick="checkForm('jd')"  id='bugo3'><a href="#">京东</a></li>
+			<li class="a" onclick="checkForm('pdd')"  id='bugo4'><a href="#">拼多多</a></li>
+		  </ul>
+		</div>
+	  </nav>
     <iframe src="https://search.suning.com/%E6%89%8B%E6%9C%BA/" id='ifa' width="1450" height="700" ></iframe>
-    <!-- <iframe src="https://list.tmall.com/search_product.htm?q=%E6%89%8B%E6%9C%BA" id='tm' width="1450" height="420" ></iframe>
-    <iframe src="https://search.jd.com/Search?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8" id='jd' width="1450" height="420" ></iframe>
-    <iframe src="http://yangkeduo.com/search_result.html?search_key=%E6%89%8B%E6%9C%BA" id='pdd' width="1450" height="420" ></iframe> -->
   </div>
   <div>
     <script> 
         function checkForm(e){
 			console.log('函数开始运行')
 			var ifa = document.getElementById("ifa"); // 获取元素
-            // var tm = document.getElementById("tm");
-            // var jd = document.getElementById("jd");
-			// var pdd = document.getElementById("pdd");
 			var keyword = document.getElementById("inpu");
 			if (keyword.value === null || keyword.value === ""){
                     alert('请输入搜索词');
@@ -78,14 +61,27 @@
 				// pdd.setAttribute("src", pddsrc)
 				console.log(e,'修改过后',snsrc,tmsrc,jdsrc,pddsrc)
 			}
+			var ids = ["bugo1","bugo2","bugo3","bugo4"]
+			for (i in ids) {
+				var bugo = document.getElementById(ids[i])
+				bugo.setAttribute("class", 'deactive');
+			}
 			if (e=='sn'){
 				ifa.setAttribute("src", snsrc);
+				var bugo = document.getElementById("bugo1")
+				bugo.setAttribute("class", 'active');
 			} else if (e=='tm') {
 				ifa.setAttribute("src", tmsrc);
+				var bugo = document.getElementById("bugo2")
+				bugo.setAttribute("class", 'active');
 			} else if (e=='pdd') {
 				ifa.setAttribute("src", pddsrc)
+				var bugo = document.getElementById("bugo4")
+				bugo.setAttribute("class", 'active');
 			} else {
 				ifa.setAttribute("src", jdsrc)
+				var bugo = document.getElementById("bugo3")
+				bugo.setAttribute("class", 'active');
 			}
         }
     </script>
