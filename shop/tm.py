@@ -62,7 +62,9 @@ class TM:
         """预售商品，如 y9000x"""
         try:
             price = self.resultn['price']['subPrice']['priceText']
-            return price
+            if not price.isdigit():
+                raise TypeError('请确定是否为选择好配置的商品，或检查商品链接中是否含有 skuid')
+            return float(price)
         except KeyError as e:
             print('字典取值错误, 请检查此商品是否为预售商品', e)
             return None
@@ -71,11 +73,10 @@ class TM:
         """单一商品，单一价格"""
         try:
             price = self.resultn['price']['price']['priceText']
-            return price
+            return float(price)
         except KeyError as e:
             print('字典取值错误，请检查此商品是否为只有一个价格的单一商品', e)
             return None
-        return float(price)
 
     def mPrice(self) -> float or None:
         """可选配置商品,需 sku
@@ -87,7 +88,8 @@ class TM:
         except KeyError as e:
             print('字典取值错误，请检查此商品是否为可选配置商品, 请提交选中配置后的商品链接', e)
             return None
-        return price
+        return float(price)
+        
 
     def main(self):
         """查询价格

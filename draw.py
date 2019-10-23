@@ -7,17 +7,8 @@ import csv
 
 basePath = os.path.dirname(os.path.abspath(__file__)) # 当前文件夹
 
-def line() -> Line:
-    global basePath
-    # csv 文件读取
-    with open(os.path.join(basePath,'task.csv'),'r',encoding='utf8') as f:
-        f_csv = csv.DictReader(f)
-        price,checktime = [],[]
-        for row in f_csv:
-            checktime.append(row['time'])
-            price.append(row['price'])
-        title = row['title']
-        
+def line(title,checktime,price) -> Line:
+    """绘图函数"""
     c = (
         Line()
         .add_xaxis(checktime)
@@ -29,7 +20,42 @@ def line() -> Line:
                         )
                 )
         )
-    
     return c
+
+def files():
+    """
+    输出字典，每一个键值为一张图表
+    """
+    global basePath
+    files = {}
+    with open(os.path.join(basePath,'goods.csv'),'r',encoding='utf8') as f:
+        f_csv = csv.reader(f)
+        next(f_csv) # 标题
+        for row in f_csv: # 内容
+            if row:
+                replace_string = ['.',' ',r'/',r'\\'] # 特殊字符处理
+                for rs in replace_string:
+                    row[1] = row[1].replace(rs,'_')
+                files.setdefault(row[0],[]).append(row[1])
+    return files
+
+def draw(files):
+    """绘制图形文件"""
+    datapath = os.path.join(basePath,'data')
+    picpath = os.path.join(basePath,'pic')
+    for k,i in files.items():
+        page = Page()
+        for n in i:
+            with open(os.path.join(datapath, n +'.csv'),'r', encoding='utf8') as f:
+                f_csv = csv.DictReader(f)
+                price,checktime = [],[]
+                for row in f_csv:
+                    checktime.append(row['时间'])
+                    price.append(row['价格'])
+                title = n
+            page.add(line(title,checktime,price)) # 24 发帖回帖变化图、近3月变化图、浏览、回复散点图
+        page.render(os.path.join(picpath, k +'.html'))
+
+
 if __name__ == '__main__':
-    line().render(os.path.join(basePath,'price.html'))
+    draw(files())
