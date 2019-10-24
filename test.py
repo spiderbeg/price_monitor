@@ -11,8 +11,8 @@ import timing
 # 'https://m.suning.com/product/0000000000/10606656136.html?safp=f73ee1cf.phone2019.121927933306.2&safc=prd.0.0']
 
 # 输入文本的链接可用性测试
-
-urls = timing.get_url()
-for url in urls:
-    timing.go(url) # 获取返回信息 
+if __name__ == '__main__':
+    urls = timing.get_url()
+    for url in urls:
+        timing.go(url) # 获取返回信息 
 
