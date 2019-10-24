@@ -13,6 +13,7 @@ class SN:
     def __init__(self,goodsUrl):
         self.shopId,self.shopId2 = self._url(goodsUrl)
         self.url = 'https://pas.suning.com/nsenitemsale_0000000%s_%s_5_999_100_025_0250199______1000173_.html?_=1571284185922&callback=wapData'%(self.shopId2,self.shopId)
+        self.headers = {'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Mobile Safari/537.36',}
         self.result = self._info()
 
     def _url(self, goodsUrl) -> (str,str):
@@ -37,7 +38,7 @@ class SN:
         返回：含商品信息的 json 数据
         """
         try:
-            r = requests.get(self.url)
+            r = requests.get(self.url, headers=self.headers)
             result = r.text.strip()[8:-1]
         except requests.exceptions.RequestException as e:
             print('信息请求错误，请检查 id', e)
