@@ -84,8 +84,11 @@ def main():
     """运行程序"""
     urls = get_url()
     for url in urls:
-        row,path = go(url) # 获取返回信息 
-        addData(row,path) # 写入文件
+        try:
+            row,path = go(url) # 获取返回信息 
+            addData(row,path) # 写入文件
+        except:
+            print('请求问题？')
 
 
 if __name__ == '__main__':
