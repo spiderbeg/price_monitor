@@ -25,7 +25,7 @@
     
           your_anaconda_setup_path\condabin\conda.bat activate your_env_name & your_anaconda_setup_path\envs\your_env_name\pythonw.exe your_program_file_path\timing.py
 ### Linux crontab 定时任务
-* 推荐阅读 <https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html>，注意对于服务器天猫和拼多多链接，成功率可能比较低。
+* 推荐阅读 <https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html>，在服务器上运行，输入天猫和拼多多链接，成功率可能比较低。
 * 两个执行示例
 
       15 8 * * * myCommand # 每天上午8点15分执行
