@@ -30,7 +30,7 @@ class TM:
             gid = re.findall(r'id=(\d+)', goodsUrl)[0]
             sku = re.findall(r'skuId=(\d+)', goodsUrl) # 电脑手机选中后会生成 skuid
         except IndexError as e:
-            raise IndexError('请检查 1 是否为天猫商品链接，2 链接中需含有 id(必需),sku(非必需) 字段。%s.'%e)
+            raise IndexError('tm -> _url 请检查 1 是否为天猫商品链接，2 链接中需含有 id(必需),sku(非必需) 字段。%s.'%e)
         if sku:
             sku = sku[0]
         else:
@@ -47,7 +47,7 @@ class TM:
         try:
             r = requests.get(self.url,headers=self.headers)
         except requests.exceptions.RequestException as e:
-            print('获取商品信息请求出错',e)
+            print('tm -> _info 获取商品信息请求出错',e)
             raise ValueError('商品信息接口请求错误请检查详细信息')
         result = r.json()['data']
         resultn = json.loads(r.json()['data']['apiStack'][0]['value'])
@@ -60,7 +60,7 @@ class TM:
             result2 = json.loads(result2)
             name = result2['item']['title']
         except KeyError as e:
-            print('该商品应为淘宝商品，非天猫商品 %s'%e)
+            print('tm -> config 该商品应为淘宝商品，非天猫商品 %s'%e)
             name = self.result['item']['title']
         return name
     
@@ -72,7 +72,7 @@ class TM:
                 raise TypeError('请确定是否为选择好配置的商品，或检查商品链接中是否含有 skuid')
             return float(price)
         except KeyError as e:
-            print('字典取值错误, 请检查此商品是否为预售商品', e)
+            print('tm -> subPrice 字典取值错误, 请检查此商品是否为预售商品', e)
             return None
 
     def sPrice(self) -> float or None:
@@ -81,7 +81,7 @@ class TM:
             price = self.resultn['price']['price']['priceText']
             return float(price)
         except KeyError as e:
-            print('字典取值错误，请检查此商品是否为只有一个价格的单一商品', e)
+            print('tm -> sPrice 字典取值错误，请检查此商品是否为只有一个价格的单一商品', e)
             return None
 
     def mPrice(self) -> float or None:
@@ -92,7 +92,7 @@ class TM:
             temp = self.resultn['skuCore']['sku2info']
             price = temp[self.sku]['price']['priceText']
         except KeyError as e:
-            print('字典取值错误，请检查此商品是否为可选配置商品, 请提交选中配置后的商品链接', e)
+            print('tm -> mPrice 字典取值错误，请检查此商品是否为可选配置商品, 请提交选中配置后的商品链接', e)
             return None
         return float(price)
         
@@ -113,5 +113,5 @@ if __name__ == '__main__':
     goodsurl = 'https://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.4.5c9a2a683BItCM&id=558420556696&skuId=4387878194208&user_id=1917047079&cat_id=2&is_b=1&rn=00bb62d66e745f2057c1eff097f36ade'
     tm = TM(goodsurl) # 605030977928：联想笔记本 ； 603330883901 华为 mate30 pro ; 523962011119: 酸奶 
     title,price = tm.main()
-    print('标题 %s; 价格 %s.'%(title,price))
+    print('tm -> __main__ 标题 %s; 价格 %s.'%(title,price))
         

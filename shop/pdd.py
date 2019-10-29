@@ -21,7 +21,7 @@ class PDD:
         try:
             goodsId = re.findall(r'goods_id=(\d+)', goodsUrl)[0]
         except IndexError as e:
-            raise IndexError('请检查 1 是否为拼多多商品链接，2 链接中需含有 goodss_id= 字段。%s.'%e)
+            raise IndexError('pdd -> _url 请检查 1 是否为拼多多商品链接，2 链接中需含有 goodss_id= 字段。%s.'%e)
         return goodsId
 
     def _info(self):
@@ -29,7 +29,7 @@ class PDD:
         try:
             r = requests.get(self.url,headers=self.headers)
         except requests.exceptions.RequestException as e:
-            print('商品详细页请求失败', e)
+            print('pdd -> _info 商品详细页请求失败', e)
             return None
         soup = BeautifulSoup(r.text,features="lxml")
         # print(soup)
@@ -40,8 +40,8 @@ class PDD:
         try:
             title = self.soup.find(class_="_1pQOmeOt").text
         except AttributeError as e:
-            print('标题 soup 属性错误，请检查', e)
-            return None
+            print('pdd -> title 可能商品已下架标题 soup 属性错误，请检查', e)
+            raise
         return title
     
     def price(self) -> float or None:
@@ -51,7 +51,7 @@ class PDD:
         try:
             price = self.soup.find(class_="_3r8Ds_Kf").text.replace('￥','').replace('单独购买','')
         except AttributeError as e:
-            print('单独购买 soup 属性错误，请检查', e)
+            print('pdd -> price 单独购买 soup 属性错误，请检查', e)
             return None
         return float(price)
 
@@ -60,7 +60,7 @@ class PDD:
         try:
             tprice = self.soup.find(class_="_3dlX1BNw").text.replace('￥','').replace('发起拼单','')
         except AttributeError as e:
-            print('团购 soup 属性错误，请检查', e)
+            print('pdd -> tPrice 团购 soup 属性错误，请检查', e)
             return None
         return float(tprice)
 
@@ -73,4 +73,4 @@ if __name__ == "__main__":
     goodsurl = 'http://yangkeduo.com/goods.html?goods_id=40316089070&page_from=35&refer_page_name=index&refer_page_id=10002_1571389581170_8wbuwgxQex&refer_page_sn=10002'
     pd = PDD(goodsurl)
     title,price = pd.main()
-    print('标题 %s, 团购 %s.'%(title,price))
+    print('pdd -> __main__ 标题 %s, 团购 %s.'%(title,price))

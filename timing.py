@@ -59,7 +59,7 @@ def go(url):
             title,price = jd.main()
         else:
             raise TypeError('请检查输入的网站链接')
-        print('标题 %s, 价格（多个价格以团购为准） %s. '%(title,price))
+        print('%s 标题 %s, 价格（多个价格以团购为准） %s. '%(result,title,price))
     else:
         raise TypeError('请检查输入是否为目标网站的商品详细页面链接')
     # 文件名
@@ -87,8 +87,8 @@ def main():
         try:
             row,path = go(url) # 获取返回信息 
             addData(row,path) # 写入文件
-        except:
-            print('请求问题？')
+        except BaseException as e:
+            print('请求问题？报错：%s'%e)
 
 
 if __name__ == '__main__':

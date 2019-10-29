@@ -27,7 +27,7 @@ class SN:
                 result = re.findall(r'suning.com/(\d.+).html', goodsUrl)
             result2 = result[0].split(r'/')
         except IndexError as e:
-            raise IndexError('请检查 1 是否为苏宁易购商品链接，2 链接中需含有 product 字段。%s.'%e)
+            raise IndexError('sn -> _url 请检查 1 是否为苏宁易购商品链接，2 链接中需含有 product 字段。%s.'%e)
         # print(result2)
         if len(result2[1]) == 18:
                 result2[1] = result2[1][7:]
@@ -41,7 +41,7 @@ class SN:
             r = requests.get(self.url, headers=self.headers)
             result = r.text.strip()[8:-1]
         except requests.exceptions.RequestException as e:
-            print('信息请求错误，请检查 id', e)
+            print('sn -> _info 信息请求错误，请检查 id', e)
             return None
         result = json.loads(result)
         return result
@@ -51,7 +51,7 @@ class SN:
         try:
             title = self.result['data']['data1']['data']['itemInfoVo']['itemDisplayName']
         except KeyError as e:
-            print('标题名取值键值错误，请检查', e)
+            print('sn -> config 标题名取值键值错误，请检查', e)
             return None            
         return title
     
@@ -60,7 +60,7 @@ class SN:
         try:
             price = self.result['data']['price']['saleInfo'][0]['promotionPrice']
         except KeyError as e:
-            print('价格取值键值错误，请检查', e)
+            print('sn -> price 价格取值键值错误，请检查', e)
             return None            
         return float(price)
     def tPrice(self) -> float or None:
@@ -68,7 +68,7 @@ class SN:
         try:
             price = self.result['data']['price']['saleInfo'][0]['pgPrice']
         except KeyError as e:
-            print('团购价格取值键值错误，请检查', e)
+            print('sn -> tprice 团购价格取值键值错误，请检查', e)
             return None           
         if price: 
             return float(price)
@@ -90,4 +90,4 @@ if __name__ == "__main__":
     # goodsurl = 'https://product.suning.com/0000000000/11128387984.html?srcPoint=dacu_ghpc2019_20190703205229104145_01&safp=d488778a.ghpc2019.20190703205229104145.4&safc=prd.0.0'
     sn = SN(goodsurl)
     title,price = sn.main()
-    print('标题 %s, 价格 %s. '%(title,price))
+    print('sn -> __main__ 标题 %s, 价格 %s. '%(title,price))

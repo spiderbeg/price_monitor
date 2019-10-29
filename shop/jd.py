@@ -31,7 +31,7 @@ class JD:
             else:
                 pid = re.findall(r'jd.com/(\d+).html', shopUrl)[0] # pc 端链接
         except IndexError as e:
-            raise IndexError('请检查 1 是否为京东商品链接，2 链接中需含有 product/ 字段。%s.'%e)
+            raise IndexError('jd -> _url 请检查 1 是否为京东商品链接，2 链接中需含有 product/ 字段。%s.'%e)
         return pid
 
     def price(self) -> float or None:
@@ -39,7 +39,7 @@ class JD:
         try:
             r = requests.get(self.urlPrice,headers=self.headers)
         except requests.exceptions.RequestException as e:
-            print('jd commodity now price error', e)
+            print('jd -> price jd commodity now price error', e)
             return False
         soup = BeautifulSoup(r.text, features="lxml")
         result = soup.find(class_="price large_size")
@@ -52,7 +52,7 @@ class JD:
         try:
             r = requests.get(self.urlysPrice,headers=self.headers)
         except requests.exceptions.RequestException as e:
-            print('jd commodity presell price error', e)
+            print('jd ->  ysPrice jd commodity presell price error', e)
             return False
         result = r.text[17:-1] # 去除首尾不需要的字符串
         # print('输出看看',result)
@@ -60,7 +60,7 @@ class JD:
         if 'error' not in result:
             price = result['ret']['currentPrice'] # 价格 
         else:
-            print('你输入的商品非预售商品')
+            print('jd -> ysPrice 你输入的商品非预售商品')
             return False
         return float(price)
 
@@ -69,7 +69,7 @@ class JD:
         try:
             r = requests.get(self.urlConfig,headers=self.headers)
         except requests.exceptions.RequestException as e:
-            print('jd commodity configure error', e)
+            print('jd -> config jd commodity configure error', e)
             return False
         result = r.json()
         name = result[self.shopId]['name'] # 配置信息
@@ -86,5 +86,5 @@ if __name__ == '__main__':
     goodsurl = 'https://item.m.jd.com/product/10873703488.html?sku=10873703488'    
     jd = JD(goodsurl) # 测试 id：100009083152 商品：联想 y9000x 笔记本电脑 2 热水壶
     title,price = jd.main()
-    print('标题 %s, 价格 %s.'%(title, price))
+    print('jd -> __main__ 标题 %s, 价格 %s.'%(title, price))
 
