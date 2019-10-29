@@ -14,5 +14,7 @@ import timing
 if __name__ == '__main__':
     urls = timing.get_url()
     for url in urls:
-        timing.go(url) # 获取返回信息 
-
+        try:
+            timing.go(url) # 获取返回信息 
+        except BaseException as e:
+            print(url,'\n',e)
