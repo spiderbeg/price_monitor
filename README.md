@@ -3,7 +3,7 @@
 * 输入天猫、苏宁、京东、拼多多（网页页面 <http://yangkeduo.com/>）任一商品链接，不是口令。**请复制选择好商品配置的页面链接**，即返回相应商品价格，并保存到文件。商品页面若有团购与单独购买两个价格，返回团购价格。
 * 使用 Windows 任务计划或 Linux 定时任务，定时执行程序。获取不同时段的商品价格信息。
 * 单独运行画图程序，可根据定时任务获取的数据，生成商品价格时间变化折线图。
-* 程序监测的两件商品图， pic 文件夹下2.html、3.html 可在本地查看，以下为截图。
+* 程序监测的两件商品截图如下，具体文件在 **pic 文件夹**下 **bnbx.html**、**kyy.html**，推荐本地查看。
      * ![follow](pic/保暖背心.png)<br>
      * ![follow](pic/烤鱿鱼丝.png)<br>
 * 简单的商品查看页面 <https://htmlpreview.github.io/?https://raw.githubusercontent.com/spiderbeg/price_monitor/master/search/search.html> 。注意：点击后请等待一段时间即可，请勿频繁刷新。
