@@ -46,14 +46,17 @@ def draw(files):
     for k,i in files.items():
         page = Page()
         for n in i:
-            with open(os.path.join(datapath, n +'.csv'),'r', encoding='utf8') as f:
-                f_csv = csv.DictReader(f)
-                price,checktime = [],[]
-                for row in f_csv:
-                    checktime.append(row['时间'])
-                    price.append(row['价格'])
-                title = n
-            page.add(line(title,checktime,price)) # 24 发帖回帖变化图、近3月变化图、浏览、回复散点图
+            try:
+                with open(os.path.join(datapath, n +'.csv'),'r', encoding='utf8') as f:
+                    f_csv = csv.DictReader(f)
+                    price,checktime = [],[]
+                    for row in f_csv:
+                        checktime.append(row['时间'])
+                        price.append(row['价格'])
+                    title = n
+                page.add(line(title,checktime,price)) # 24 发帖回帖变化图、近3月变化图、浏览、回复散点图
+            except:
+                print('未制图：',n)
         page.render(os.path.join(picpath, k +'.html'))
 
 
