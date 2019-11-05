@@ -20,8 +20,12 @@
 ### Windows 任务计划
 * 推荐阅读 <https://mp.weixin.qq.com/s/JKFvnmtlEqaE8GxbX6Fpyw>
 * 注意如果你的 Python 使用的是虚拟环境，那么请找到你虚拟环境的 pythonw.exe (注意这里 python.exe 与 pythonw.exe 都可以使用，使用 pythonw.exe 是为了避免控制台一闪而逝的现象，不必纠结).
+* 如果你用的是 anaconda 或者 python 的虚拟环境，那么就需要进入虚拟环境中，再运行程序。这里以 anaconda 虚拟环境为例。
+    * 首先找到安装 anaconda 的安装目录，在安装目录中找到 **condabin文件夹中的 conda.bat**，在上面推荐阅读教程中**程序或脚本** 输入框最前面添加 conda.bat 的路径和 **activate** 你的虚拟环境的名字。如： 
+    
+          your_anaconda_setup_path\condabin\conda.bat activate your_env_name & your_anaconda_setup_path\envs\your_env_name\pythonw.exe your_program_file_path\timing.py
 ### Linux crontab 定时任务
-* 推荐阅读 <https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html>
+* 推荐阅读 <https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html>，在服务器上运行，输入天猫和拼多多链接，成功率可能比较低。
 * 两个执行示例
 
       15 8 * * * myCommand # 每天上午8点15分执行
