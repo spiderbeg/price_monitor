@@ -6,7 +6,9 @@
 * 程序监测的两件商品截图如下，具体文件在 **pic 文件夹**下 **bnbx.html**、**kyy.html**，推荐本地查看。
      * ![follow](pic/保暖背心.png)<br>
      * ![follow](pic/烤鱿鱼丝.png)<br>
-* 简单的商品查看页面 <https://htmlpreview.github.io/?https://raw.githubusercontent.com/spiderbeg/price_monitor/master/search/search.html> 。注意：点击后请等待一段时间即可，请勿频繁刷新。
+* 简单的商品查看页面 <https://htmlpreview.github.io/?https://raw.githubusercontent.com/spiderbeg/price_monitor/master/search/search.html> 。输入查询商品关键词，选择商城，即可查看相应商城商品列表。默认为苏宁。效果图如下。注意：点击后请等待一段时间即可，请勿频繁刷新。
+     * ![follow](search/search.png)<br>
+* 更多实用而有趣的分析案例请关注：<strong>Crossin的编程教室</strong>
 ## 快速上手
 ### 项目下载
 * 确认本地放置项目的目录，运行：
@@ -71,6 +73,14 @@
       result = r.text.strip()[8:-1]
       result = json.loads(result)
       price = result['data']['price']['saleInfo'][0]['promotionPrice']
+### 简单的商品查看页面
+* 操作步骤
+    1. 输入查询商品关键词，选择对应商城，即可查看相应商品列表。
+* 实现原理
+    1. 使用了HTML内联框架元素 (<iframe>)。只需要另一个 HTML 页面的链接，它就能够将另一个 HTML 页面嵌入到当前页面中。即我们要做的就是利用各商城的商品列表页面链接把各商城的商品列表页面嵌入到我们的页面中。
+    
+            <iframe src="https://search.suning.com/%E6%89%8B%E6%9C%BA/" id='ifa' width="1450" height="700" ></iframe>
+    2. 当选择商城时，使用 js 更换 iframe 中的链接即可。具体 js 代码可查看 search 文件夹下 search.html。
 ## 主要文件说明
 ### shop 文件夹
 * info 部分类别商品的测试记录。
@@ -86,4 +96,7 @@
 * 商品价格信息获取后储存位置。
 ### pic 文件夹
 * 运行 draw.py 后，图像文件生成在 pic 文件中。
+## Crossin的编程教室
+* 更多实用而有趣的分析案例请关注：**Crossin的编程教室** <br>
+<img src="Crossin的编程教室.jpg" alt="Crossin的编程教室.jpg" height="200" width="200">   
 
